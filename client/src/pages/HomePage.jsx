@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { headerData } from '../api/Api';
-
+import Catalog from '../components/Catalog';
 
 function HomePage() {
-  const [headerData, setHeaderData] = useState([]);
+  const [headerDataState, setHeaderData] = useState([]);
 
   useEffect(() => {
-    headerData.then((res) => {
-      setHeaderData(res)
-    }) 
+    const fetchData = async () => {
+      try {
+        const res = await headerData();
+        setHeaderData(res);
+      } catch (error) {
+        console.error('Error fetching header data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <div>
-      <Header headerData={headerData}/>
+      <Header headerData={headerDataState} />
+      <Catalog />
     </div>
   );
 }
