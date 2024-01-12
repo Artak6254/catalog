@@ -1,0 +1,18 @@
+{ 
+"header" : [
+    { "id": 1, "title": "ՀՀ Ոստիկանություն", "subtitle": "«ՃԱՆԱՊԱՐՀԱՅԻՆ ՈՍՏԻԿԱՆՈՒԹՅՈՒՆ» ԾԱՌԱՅՈՒԹՅՈՒՆ" }
+ ],
+ "catalog":[
+    {"id": 1, "image": "","title":"Վարչական ակտերի հաշվառման էլեկտրոնային ռեգիստր" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 2, "image": "","title":"Բալային համակարգ" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 3, "image": "","title":"ՃՊԾ տեսուչների կողմից կազմված արձանագրությունների էլեկտրոնային ռեգիստր" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 4, "image": "","title":"Ճանապարհային Ոստիկանության էլեկտրոնային ռեգիստր" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 5, "image": "","title":"Թվայնացված ծանուցագրերի դիտման համակարգ" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 6, "image": "","title":"ՃՏՊ հաշվառման էլեկտրոնային ռեգիստր" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 7, "image": "","title":"Օպերատիվ կառավարման կենտրոն" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 8, "image": "","title":"Ավտոմատ ճանաչման համակարգով փնտրվող համարանիշներ" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 9, "image": "","title":"Ծանուցումների էլեկտրոնային համակարգ" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 10,"image": "","title":"Հեռախոսագիրք" , "link": "dvsdfvcsxfvcsvc"},
+    {"id": 11, "image": "","title":"Հերթագրման համակարգ" , "link": "dvsdfvcsxfvcsvc"}
+]
+}
