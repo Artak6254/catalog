@@ -20,7 +20,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className='h-screen bg-blue-800'>
       <Header headerData={headerDataState} />
       <Catalog />
     </div>
