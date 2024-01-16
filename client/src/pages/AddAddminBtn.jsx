@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addCatalogItem } from '../api/Api'; // Import your API function
+import { addButtonItem } from '../api/Api';
 
-const AdminAdd = () => {
+export default function AddAddminBtn() {
   const navigate = useNavigate();
 
   // State to track input values
   const [formData, setFormData] = useState({
-    image: '',
-    title: '',
+    button: '',
     link: '',
   });
 
@@ -24,15 +23,14 @@ const AdminAdd = () => {
   // Handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.image || !formData.title || !formData.link) {
+    if (!formData.button || !formData.link) {
       alert('Please fill in all the fields');
       return;
     }
 
     try {
       // Make a POST request to your server
-      await addCatalogItem(formData);
+      await addButtonItem(formData);
 
       // Redirect or perform any other action after successful submission
       navigate('/admin');
@@ -42,6 +40,7 @@ const AdminAdd = () => {
   };
 
   return (
+    <div>
     <div className="my-6 mx-auto max-w-xl bg-white font-[sans-serif]">
       <button
         className="px-6 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
@@ -51,29 +50,18 @@ const AdminAdd = () => {
       </button>
       <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
         <div>
-          <label className="text-sm font-semibold block mb-2">նկարի լինկ</label>
+          <label className="text-sm font-semibold block mb-2">կոճակի անունը</label>
           <input
             type="text"
-            name="image"
-            placeholder="նկարի լինկ"
-            value={formData.image}
+            name="button"
+            placeholder="կոճակի անունը"
+            value={formData.button}
             onChange={handleInputChange}
             className="w-full rounded-md py-2.5 px-4 border text-sm outline-blue-500"
           />
         </div>
         <div>
-          <label className="text-sm font-semibold block mb-2">վերնագիր</label>
-          <input
-            type="text"
-            name="title"
-            placeholder="վաերնագիր"
-            value={formData.title}
-            onChange={handleInputChange}
-            className="w-full rounded-md py-2.5 px-4 border text-sm outline-blue-500"
-          />
-        </div>
-        <div>
-          <label className="text-sm font-semibold block mb-2">լինկ</label>
+          <label className="text-sm font-semibold block mb-2">կոճակի լինկը</label>
           <input
             type="text"
             name="link"
@@ -91,7 +79,6 @@ const AdminAdd = () => {
         </button>
       </form>
     </div>
+    </div>
   );
-};
-
-export default AdminAdd;
+}

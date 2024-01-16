@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  catalogData as apiCatalogData,
-  updateCatalogItem,
-  deleteCatalogItem,
-} from "../api/Api";
+import { buttonData, updateButtonItem, deleteButtonItem } from "../api/Api";
 
-const Admin = () => {
-  const [catalogDataApi, setCatalogDataApi] = useState([]);
+export default function UpdateBtn() {
+  const [getBtnData, setBtnData] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
 
   const navigate = useNavigate();
@@ -15,13 +11,12 @@ const Admin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await apiCatalogData();
-        setCatalogDataApi(res);
+        const res = await buttonData();
+        setBtnData(res);
       } catch (error) {
-        console.error("Error fetching catalog data:", error);
+        console.error("Error fetching button data:", error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -33,10 +28,10 @@ const Admin = () => {
     event.preventDefault();
 
     try {
-      await updateCatalogItem(editedItem.id, editedItem);
+      await updateButtonItem(editedItem.id, editedItem);
       // Refresh the data after the update
-      const updatedData = await apiCatalogData();
-      setCatalogDataApi(updatedData);
+      const updatedData = await buttonData();
+      setBtnData(updatedData);
       // Reset the edited item state
       setEditedItem(null);
     } catch (error) {
@@ -55,13 +50,13 @@ const Admin = () => {
   const handleDeleteClick = async (id) => {
     try {
       // Make a DELETE request to your server
-      await deleteCatalogItem(id);
+      await deleteButtonItem(id);
 
       // Refresh the data after the deletion
-      const updatedData = await apiCatalogData();
-      setCatalogDataApi(updatedData);
+      const updatedData = await buttonData();
+      setBtnData(updatedData);
     } catch (error) {
-      console.error("Error deleting catalog item:", error);
+      console.error("Error deleting button item:", error);
     }
   };
 
@@ -76,23 +71,14 @@ const Admin = () => {
         </button>
         <button
           className="px-6 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
-          onClick={() => navigate("updatebtn")}
+          onClick={() => navigate("addaddminbtn")}
         >
-          փոփոխել կոճակնեը
-        </button>
-        <button
-          className="px-6 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600"
-          onClick={() => navigate("adminadd")}
-        >
-          Ավելացնել նոր տվյալ
+          Ավելացնել նոր կոճակ
         </button>
       </div>
       <table className="min-w-full bg-white font-[sans-serif]">
         <thead className="bg-gray-800 whitespace-nowrap">
           <tr>
-            <th className="px-6 py-3 text-left text-sm font-semibold text-white">
-              նկարի լինկ
-            </th>
             <th className="px-6 py-3 text-left text-sm font-semibold text-white">
               վերնագիր
             </th>
@@ -105,12 +91,9 @@ const Admin = () => {
           </tr>
         </thead>
         <tbody className="whitespace-nowrap divide-y divide-gray-200">
-          {catalogDataApi?.map((item) => (
-            <tr className="hover:bg-blue-50" key={item.id}>
-              <td className="px-6 py-4 text-sm">
-                <img src={`${item.image}`} alt="/" className="w-[12%]" />
-              </td>
-              <td className="px-6 py-4 text-sm">{item.title}</td>
+          {getBtnData?.map((item, index) => (
+            <tr className="hover:bg-blue-50" key={index}>
+              <td className="px-6 py-4 text-sm">{item.button}</td>
               <td className="px-6 py-4 text-sm">{item.link}</td>
               <td className="px-6 py-4">
                 <button
@@ -166,25 +149,13 @@ const Admin = () => {
               onSubmit={handleFormSubmit}
               className="flex flex-col bg-white p-6 rounded shadow-md"
             >
-              {/* Input fields for editing */}
-              <label htmlFor="image" className="mb-2 text-lg block text-md">
-                Image URL:
-                <input
-                  type="text"
-                  id="image"
-                  name="image"
-                  value={editedItem.image}
-                  onChange={handleInputChange}
-                  className="px-4 py-2.5 text-sm rounded-md bg-white border border-gray-400 w-full outline-blue-500"
-                />
-              </label>
-              <label htmlFor="title" className="mb-2 text-lg block text-md">
+              <label htmlFor="button" className="mb-2 text-lg block text-md">
                 Title:
                 <input
                   type="text"
-                  id="title"
-                  name="title"
-                  value={editedItem.title}
+                  id="button"
+                  name="button" // Update name to "button"
+                  value={editedItem.button}
                   onChange={handleInputChange}
                   className="px-4 py-2.5 text-sm rounded-md bg-white border border-gray-400 w-full outline-blue-500"
                 />
@@ -212,6 +183,4 @@ const Admin = () => {
       )}
     </div>
   );
-};
-
-export default Admin;
+}
