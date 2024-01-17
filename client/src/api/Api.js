@@ -13,8 +13,6 @@ export const buttonData = async () =>{
   return data;
 }
 
-
-
 export const updateButtonItem = async (itemId, newData) => {
   const response = await fetch(`http://10.111.111.190:3001/updateBtn/${itemId}`, {
     method: 'PUT',
@@ -79,7 +77,6 @@ export const updateCatalogItem = async (itemId, newData) => {
       return updatedData;
   };
 
-
   export const deleteCatalogItem = async (id) => {
     const response = await fetch(`http://10.111.111.190:3001/delete/${id}`, {
       method: 'DELETE',
@@ -92,6 +89,7 @@ export const updateCatalogItem = async (itemId, newData) => {
       throw new Error('Failed to delete catalog item');
     }
   };
+
   export const addCatalogItem = async (data) => {
     const response = await fetch('http://10.111.111.190:3001/addCatalog', {
       method: 'POST',
